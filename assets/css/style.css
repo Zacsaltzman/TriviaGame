@@ -1,0 +1,36 @@
+body {
+	background-image: url("https://s-media-cache-ak0.pinimg.com/originals/ea/f6/89/eaf6895a64a287270f110ded055a6b50.jpg");
+	margin: 0px;
+	padding: 0px;
+}
+
+.background {
+	background: rgba(255, 165, 0, .9);
+	padding: 20px 0px 20px 0px;
+}
+
+@font-face {font-family: "Disney"; src: url('http://static.tumblr.com/npggxjg/VdAlzs1dx/disney.otf');}
+
+h1 {
+	color: black;
+	font-family: "Disney";
+	font-size: 65px;
+}
+
+.page-text {
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+.answerBtn {
+	margin-bottom: 10px;
+	width: 80%;
+	font-size: 20px;
+	background: none;
+	border: none;
+}
+
+.character {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
