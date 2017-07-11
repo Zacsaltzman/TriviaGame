@@ -50,8 +50,37 @@ var question06 = {
 	correct: "Chip",
 	image: "./assets/images/chip.png"
 };
+var question07 = {
+	question: "What film takes place in Agrabah?",
+	answers: ["Frozen", "Aladdin", "Tangled", "The Little Mermaid"],
+	values: ["incorrect", "correct", "incorrect", "incorrect"],
+	correct: "Aladdin",
+	image: "./assets/images/aladdin.png"
+};
+var question08 = {
+	question: "What is Dumbo's real name?",
+	answers: ["Tembo", "Jambo", "Jumbo Jr.", "Wumbo"],
+	values: ["incorrect", "incorrect", "correct", "incorrect"],
+	correct: "Jumbo Jr.",
+	image: "./assets/images/dumbo.gif"
+};
+var question09 = {
+	question: "What organization did Russell from Up belong to?",
+	answers: ["Boy Scout", "Kid Camper", "Wilderness Explorer", "Adventure Seeker"],
+	values: ["incorrect", "incorrect", "correct", "incorrect"],
+	correct: "Wilderness Explorer",
+	image: "./assets/images/russell.png"
+};
+var question10 = {
+	question: "What type of animal is Flower in Bambi?",
+	answers: ["Skunk", "Deer", "Rabbit", "Owl"],
+	values: ["correct", "incorrect", "incorrect", "incorrect"],
+	correct: "Skunk",
+	image: "./assets/images/flower.png"
+};
 
-var questionsArray = [question01, question02, question03, question04, question05, question06];
+
+var questionsArray = [question01, question02, question03, question04, question05, question06, question07, question08, question09, question10];
 
 // Functions
 
@@ -71,20 +100,19 @@ var questionsArray = [question01, question02, question03, question04, question05
       time--;
       $(".timer-div").html("Time Remaining: " + time + " Seconds");
       if (time == 0) {
-        stop();
         if (arrayFinder < questionsArray.length-1) {
-	        unanswered++;
-	        solutionWrite(questionsArray[arrayFinder]);
-	        $(".question-div").html("Incorrect!");
-	        arrayFinder++;
-	        setTimeout(function () {questionWrite(questionsArray[arrayFinder])}, 2000);
+        	setTimeout(function () {questionWrite(questionsArray[arrayFinder])}, 2000);
+        	solutionWrite(questionsArray[arrayFinder]);
+	    	$(".question-div").html("Incorrect!");
+        	stop();
+        	unanswered++;
       	}
       	else if (arrayFinder < questionsArray.length) {
-      		unanswered++;
-	        solutionWrite(questionsArray[arrayFinder]);
-	        $(".question-div").html("Incorrect!");
-	        arrayFinder++;
-	        setTimeout(function () {endWrite(questionsArray[arrayFinder])}, 2000);
+      		setTimeout(function () {endWrite(questionsArray[arrayFinder])}, 2000);
+      		solutionWrite(questionsArray[arrayFinder]);
+	    	$(".question-div").html("Incorrect!");
+        	stop();
+        	unanswered++;
       	}
       };
     };
@@ -120,6 +148,7 @@ var questionsArray = [question01, question02, question03, question04, question05
 		characterImage.attr("src", obj.image);
 		characterImage.addClass("character")
 		$(".content-div").append(characterImage);
+		arrayFinder++;
 	};
 
 	function startWrite () {
@@ -127,37 +156,26 @@ var questionsArray = [question01, question02, question03, question04, question05
 	};
 
 	function answerSelect () {
+		stop();
 		if ($(this).attr("value") == "correct") {
-			stop();
-			if (arrayFinder < questionsArray.length-1) {
-				solutionWrite(questionsArray[arrayFinder]);
-				$(".question-div").html("Correct!");
-				correct++;
-				arrayFinder++;
+			solutionWrite(questionsArray[arrayFinder]);
+			$(".question-div").html("Correct!");
+			correct++;
+			if (arrayFinder < questionsArray.length) {
 				setTimeout(function () {questionWrite(questionsArray[arrayFinder])}, 2000);
 			}
-			else if (arrayFinder < questionsArray.length) {
-	      		correct++;
-		        solutionWrite(questionsArray[arrayFinder]);
-		        $(".question-div").html("Correct!");
-		        arrayFinder++;
+			else if (arrayFinder < questionsArray.length+1) {
 		        setTimeout(function () {endWrite(questionsArray[arrayFinder])}, 2000);
       		}
 		}
 		else if ($(this).attr("value") == "incorrect") {
-			stop();
-			if (arrayFinder < questionsArray.length-1) {
-				solutionWrite(questionsArray[arrayFinder]);
-				$(".question-div").html("Incorrect!");
-				incorrect++;
-				arrayFinder++;
+			solutionWrite(questionsArray[arrayFinder]);
+			$(".question-div").html("Incorrect!");
+			incorrect++;
+			if (arrayFinder < questionsArray.length) {
 				setTimeout(function () {questionWrite(questionsArray[arrayFinder])}, 2000);
 			}
-			else if (arrayFinder < questionsArray.length) {
-	      		incorrect++;
-		        solutionWrite(questionsArray[arrayFinder]);
-		        $(".question-div").html("Incorrect!");
-		        arrayFinder++;
+			else if (arrayFinder < questionsArray.length+1) {
 		        setTimeout(function () {endWrite(questionsArray[arrayFinder])}, 2000);
       		}
 		}
