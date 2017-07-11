@@ -9,7 +9,7 @@ body {
 	padding: 20px 0px 20px 0px;
 }
 
-@font-face {font-family: "Disney"; src: url('http://static.tumblr.com/npggxjg/VdAlzs1dx/disney.otf');}
+@font-face {font-family: "Disney"; src: url('../fonts/disney.otf');}
 
 h1 {
 	color: black;
